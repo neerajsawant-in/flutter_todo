@@ -1,4 +1,4 @@
-                                         its just a simple to do app, trying flutter out there, that's it
+                               its just a simple to do app, trying flutter out there, that's it
 
 <p align="center">
   <img width="300" alt="To do app screenshot" src="https://github.com/user-attachments/assets/6c9e27fa-6206-42a3-9c58-3ccc65c5fe7a" />
