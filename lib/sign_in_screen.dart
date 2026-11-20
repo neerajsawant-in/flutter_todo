@@ -31,10 +31,10 @@ class _SignInScreenState extends State<SignInScreen> {
       await action();
     } on FirebaseAuthException catch (error) {
       setState(() => _error = switch (error.code) {
-        'invalid-email' => 'That email address doesn’t look right.',
-        'user-not-found' || 'wrong-password' || 'invalid-credential' => 'Email or password is incorrect.',
-        'email-already-in-use' => 'An account already uses that email.',
-        'weak-password' => 'Choose a password with at least 6 characters.',
+        'invalid-email' => 'That email address does not look right.',
+        'user not found' || 'wrong password' || 'invalid credential' => 'Email or password is incorrect.',
+        'email-already-in-use' => 'An account already uses that email id.',
+        'too weak-password' => 'Choose a password with at least 6 characters.',
         'network-request-failed' => 'Check your internet connection and try again.',
         'operation-not-allowed' => 'Enable email/password sign-in in Firebase Authentication settings.',
         _ => error.message ?? 'Sign in failed. Please try again.',

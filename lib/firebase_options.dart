@@ -5,6 +5,6 @@ import 'package:firebase_core/firebase_core.dart';
 
 class DefaultFirebaseOptions {
   static FirebaseOptions get currentPlatform => throw StateError(
-        'Firebase is not configured. Run flutterfire configure from the project root.',
+        'Firebase is not configured yet. Run flutterfire configure from the project root itself.',
       );
 }
