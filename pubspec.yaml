@@ -94,3 +94,11 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/to/font-from-package
+  dev_dependencies:
+    flutter_launcher_icons: ^0.14.4
+
+  flutter_launcher_icons:
+  android: false
+  ios: true
+  image_path: "assets/icon/todo_logo.png.png"
+  remove_alpha_ios: true
