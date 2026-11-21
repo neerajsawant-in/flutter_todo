@@ -22,7 +22,8 @@ class TaskRecord {
   final DateTime createdAt;
   final DateTime? completedAt;
 
-  TimeOfDay get time => TimeOfDay(hour: timeMinutes ~/ 60, minute: timeMinutes % 60);
+  TimeOfDay get time =>
+      TimeOfDay(hour: timeMinutes ~/ 60, minute: timeMinutes % 60);
   Color get color => Color(colorValue);
 
   factory TaskRecord.fromDocument(DocumentSnapshot<Map<String, dynamic>> doc) {
@@ -47,10 +48,8 @@ class TaskRepository {
   final String userId;
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
-  CollectionReference<Map<String, dynamic>> get _tasks => _firestore
-      .collection('users')
-      .doc(userId)
-      .collection('tasks');
+  CollectionReference<Map<String, dynamic>> get _tasks =>
+      _firestore.collection('users').doc(userId).collection('tasks');
 
   Future<List<TaskRecord>> loadTasks() async {
     final snapshot = await _tasks.get();
@@ -77,8 +76,24 @@ class TaskRepository {
     return ref.id;
   }
 
-  Future<void> setDone(TaskRecord task, bool done) => _tasks.doc(task.id).update({
+  Future<void> setDone(TaskRecord task, bool done) =>
+      _tasks.doc(task.id).update({
         'done': done,
-        'completedAt': done ? FieldValue.serverTimestamp() : FieldValue.delete(),
+        'completedAt': done
+            ? FieldValue.serverTimestamp()
+            : FieldValue.delete(),
       });
+
+  Future<void> updateTask({
+    required String id,
+    required String title,
+    required TimeOfDay time,
+    required bool reminder,
+  }) => _tasks.doc(id).update({
+    'title': title,
+    'timeMinutes': time.hour * 60 + time.minute,
+    'reminder': reminder,
+  });
+
+  Future<void> deleteTask(String id) => _tasks.doc(id).delete();
 }
